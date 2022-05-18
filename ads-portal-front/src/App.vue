@@ -1,6 +1,6 @@
 <script setup>
-import NavBar from "./components/NavBar.vue";
-import MapComponent from "./components/MapComponent.vue";
+import NavBar from "./components/layout/NavBar.vue";
+import MapComponent from "./components/Map/MapComponent.vue";
 </script>
 
 <template>

@@ -1,13 +1,14 @@
 <script setup>
+import BasicButton from "../commons/BasicButton.vue";
 </script>
 
 <template>
   <header>
     <h1><strong>adds </strong> portal</h1>
-    <button class="add-button">Dodaj ogłoszenie</button>
+    <BasicButton text="Dodaj ogłoszenie"/>
     <div class="search">
       <input type="text" class="search-input">
-      <button class="search-button">Szukaj</button>
+      <BasicButton text="Szukaj"/>
     </div>
   </header>
   <div class="map">
@@ -32,17 +33,6 @@ header h1 {
   color: #fff;
 }
 
-.add-button, .search-button{
-  background-color: #2d5d1c;
-  border: 0;
-  padding: 6px 22px;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 0.7rem;
-  border-radius: 3px;
-}
-
 .search{
   display: flex;
   align-items: center;
@@ -55,5 +45,4 @@ header h1 {
   border: 0;
   padding:4px;
 }
-
 </style>
