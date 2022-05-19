@@ -4,7 +4,7 @@ import MapComponent from "./components/Map/MapComponent.vue";
 </script>
 
 <template>
-  <NavBar />
+  <NavBar/>
   <MapComponent/>
 </template>
 
