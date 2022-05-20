@@ -1,9 +1,9 @@
-import { AdEntity } from '../types/ad/ad-entity';
+import { AdEntity, NewAdentity } from '../types/ad/ad-entity';
 import { ValidationError } from '../utils/errors';
+import { pool } from '../utils/db';
+import { FieldPacket } from 'mysql2';
 
-interface NewAdentity extends Omit<AdEntity, 'id'> {
-    id?: string;
-}
+type AdRecordResult = [AdEntity[], FieldPacket[]]
 
 export class AdRecord implements AdEntity {
     id: string;
@@ -42,5 +42,13 @@ export class AdRecord implements AdEntity {
         this.url = obj.url
         this.lat = obj.lat
         this.lon = obj.lon
+    }
+
+    static async getOne(id: string): Promise<AdRecord | null> {
+       const [result] = await pool.execute("SELECT * FROM `ads` WHERE id = :id", {
+            id,
+        }) as AdRecordResult;
+
+       return result.length === 0 ? null : new AdRecord(result[0]);
     }
 }
