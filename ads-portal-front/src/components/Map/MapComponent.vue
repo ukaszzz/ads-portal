@@ -1,15 +1,32 @@
 <script setup>
 import "leaflet/dist/leaflet.css";
-
+import {
+  LMap,
+  LIcon,
+  LTileLayer,
+  LMarker,
+  LControlLayers,
+  LTooltip,
+  LPopup,
+  LPolyline,
+  LPolygon,
+  LRectangle,
+} from "@vue-leaflet/vue-leaflet";
+import {useSearchInputStore} from "../../store/search";
 const zoom = 13;
+const minZoom = 13;
+const maxZoom = 18;
+const searchValueStore = useSearchInputStore();
 </script>
 
 <template>
+  <h1>{{searchValueStore.searchInput}}</h1>
   <div class="map">
     <l-map
         v-model="zoom"
         :zoom="zoom"
-        minZoom="3"
+        :minZoom="minZoom"
+        :maxZoom="maxZoom"
         :center="[50.063947,19.9517065]"
     >
       <l-tile-layer

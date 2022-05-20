@@ -1,15 +1,22 @@
 <script setup>
 import BasicButton from "../commons/BasicButton.vue";
+import {ref, watch} from "vue";
+import {useSearchInputStore} from "../../store/search";
+
+const searchValueStore = useSearchInputStore();
+const searchValue = ref('');
 </script>
 
 <template>
   <header>
     <h1><strong>adds </strong> portal</h1>
     <BasicButton text="Dodaj ogłoszenie"/>
-    <div class="search">
-      <input type="text" class="search-input">
+    <form class="search" @submit.prevent="() => searchValueStore.changeInput(searchValue)">
+      <input type="text"
+             class="search-input"
+             v-model="searchValue">
       <BasicButton text="Szukaj"/>
-    </div>
+    </form>
   </header>
   <div class="map">
 
