@@ -1,16 +1,4 @@
 <script setup>
-import {
-  LMap,
-  LIcon,
-  LTileLayer,
-  LMarker,
-  LControlLayers,
-  LTooltip,
-  LPopup,
-  LPolyline,
-  LPolygon,
-  LRectangle,
-} from "@vue-leaflet/vue-leaflet";
 import "leaflet/dist/leaflet.css";
 
 const zoom = 13;
@@ -21,6 +9,7 @@ const zoom = 13;
     <l-map
         v-model="zoom"
         :zoom="zoom"
+        minZoom="3"
         :center="[50.063947,19.9517065]"
     >
       <l-tile-layer
