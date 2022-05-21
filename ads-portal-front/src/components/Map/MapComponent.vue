@@ -14,13 +14,13 @@ import {
 } from "@vue-leaflet/vue-leaflet";
 import {useSearchInputStore} from "../../store/search";
 const zoom = 13;
-const minZoom = 13;
+const minZoom = 3;
 const maxZoom = 18;
 const searchValueStore = useSearchInputStore();
 </script>
 
 <template>
-  <h1>{{searchValueStore.searchInput}}</h1>
+  <p class="search-result">Search for: {{searchValueStore.searchInput}}</p>
   <div class="map">
     <l-map
         v-model="zoom"
@@ -48,9 +48,14 @@ const searchValueStore = useSearchInputStore();
 </template>
 
 <style scoped>
+.search-result {
+  font-size: 16px;
+  font-family: "monospace";
+  padding: 4px;
+}
 .map{
   background-color: #ddd;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 80px);
   max-height: 100vh;
 }
 
