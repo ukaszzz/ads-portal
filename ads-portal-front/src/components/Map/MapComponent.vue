@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import 'leaflet/dist/leaflet.css';
 //@ts-ignore
-import { LMap, LMarker, LTileLayer, LTooltip } from '@vue-leaflet/vue-leaflet';
+import { LMap, LMarker, LTileLayer, LPopup } from '@vue-leaflet/vue-leaflet';
 import { useSearchInputStore } from '../../store/search';
 import { onMounted, ref, watch } from 'vue';
 import { SimpleAdEntity } from '../../types/ad-entity';
+import SingleAd from './SingleAd.vue';
 
 const zoom = 3;
 const minZoom = 3;
@@ -40,10 +41,10 @@ watch(searchValueStore, async () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&copy;<a href='https://www.openstreetmap.org/copyright'> OpenStreetMap & contributors"
       ></l-tile-layer>
-        <l-marker  v-for="ad in ads" :lat-lng="[ad.lat, ad.lon]">
-          <l-tooltip>
-            {{ad.id}}
-          </l-tooltip>
+        <l-marker v-for="ad in ads" :lat-lng="[ad.lat, ad.lon]">
+          <l-popup>
+            <SingleAd :id="ad.id" ></SingleAd>
+          </l-popup>
         </l-marker>
     </l-map>
   </div>
@@ -54,6 +55,7 @@ watch(searchValueStore, async () => {
   font-size: 16px;
   font-family: "monospace";
   padding: 4px;
+  cursor: pointer;
 }
 .map{
   background-color: #ddd;

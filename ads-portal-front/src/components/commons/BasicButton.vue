@@ -14,6 +14,7 @@ const props = defineProps({
   border: 0;
   padding: 6px 22px;
   color: #fff;
+  cursor: pointer;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 0.7rem;
