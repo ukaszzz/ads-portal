@@ -1,22 +1,29 @@
-<script setup>
-import "leaflet/dist/leaflet.css";
-import {
-  LMap,
-  LIcon,
-  LTileLayer,
-  LMarker,
-  LControlLayers,
-  LTooltip,
-  LPopup,
-  LPolyline,
-  LPolygon,
-  LRectangle,
-} from "@vue-leaflet/vue-leaflet";
-import {useSearchInputStore} from "../../store/search";
-const zoom = 13;
+<script setup lang="ts">
+import 'leaflet/dist/leaflet.css';
+//@ts-ignore
+import { LMap, LMarker, LTileLayer, LTooltip } from '@vue-leaflet/vue-leaflet';
+import { useSearchInputStore } from '../../store/search';
+import { onMounted, ref, watch } from 'vue';
+import { SimpleAdEntity } from '../../types/ad-entity';
+
+const zoom = 3;
 const minZoom = 3;
 const maxZoom = 18;
 const searchValueStore = useSearchInputStore();
+const ads = ref<SimpleAdEntity[]>([])
+
+async function getAds() {
+  const response = await fetch(`http://localhost:3001/ad/search/${searchValueStore.searchInput}`);
+  ads.value = await response.json();
+}
+
+onMounted(() => {
+  getAds()
+});
+
+watch(searchValueStore, async () => {
+  await getAds();
+})
 </script>
 
 <template>
@@ -33,16 +40,11 @@ const searchValueStore = useSearchInputStore();
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&copy;<a href='https://www.openstreetmap.org/copyright'> OpenStreetMap & contributors"
       ></l-tile-layer>
-      <l-marker :lat-lng="[50.063947,19.9517065]" draggable>
-        <l-tooltip>
-          lol
-        </l-tooltip>
-      </l-marker>
-      <l-marker :lat-lng="[50, 50]" draggable>
-        <l-popup>
-          lol
-        </l-popup>
-      </l-marker>
+        <l-marker  v-for="ad in ads" :lat-lng="[ad.lat, ad.lon]">
+          <l-tooltip>
+            {{ad.id}}
+          </l-tooltip>
+        </l-marker>
     </l-map>
   </div>
 </template>
