@@ -1,6 +1,6 @@
 <script setup>
 import BasicButton from "../commons/BasicButton.vue";
-import {ref, watch} from "vue";
+import {ref} from "vue";
 import {useSearchInputStore} from "../../store/search";
 
 const searchValueStore = useSearchInputStore();
@@ -9,8 +9,8 @@ const searchValue = ref('');
 
 <template>
   <header>
-    <h1><strong>adds </strong> portal</h1>
-    <BasicButton text="Dodaj ogłoszenie"/>
+    <h1><router-link class="home-page" to="/"><strong>adds </strong> portal</router-link></h1>
+    <BasicButton text="Dodaj ogłoszenie" to="/add"/>
     <form class="search" @submit.prevent="() => searchValueStore.changeInput(searchValue)">
       <input type="text"
              class="search-input"
@@ -37,6 +37,11 @@ header {
 header h1 {
   font-size: 22px;
   font-weight: 200;
+  color: #fff;
+}
+
+.home-page{
+  text-decoration: none;
   color: #fff;
 }
 

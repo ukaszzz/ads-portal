@@ -11,7 +11,8 @@
     "@vue-leaflet/vue-leaflet": "^0.6.1",
     "leaflet": "^1.8.0",
     "pinia": "^2.0.14",
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.15"
   },
   "devDependencies": {
     "@types/leaflet": "^1.7.10",

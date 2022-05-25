@@ -35,12 +35,11 @@ watch(searchValueStore, async () => {
         :zoom="zoom"
         :minZoom="minZoom"
         :maxZoom="maxZoom"
-        :center="[50.063947,19.9517065]"
-    >
+        :center="[50.063947,19.9517065]">
       <l-tile-layer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution="&copy;<a href='https://www.openstreetmap.org/copyright'> OpenStreetMap & contributors"
-      ></l-tile-layer>
+          attribution="&copy;<a href='https://www.openstreetmap.org/copyright'> OpenStreetMap & contributors">
+      </l-tile-layer>
         <l-marker v-for="ad in ads" :lat-lng="[ad.lat, ad.lon]">
           <l-popup>
             <SingleAd :id="ad.id" ></SingleAd>

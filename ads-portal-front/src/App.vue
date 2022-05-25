@@ -1,11 +1,10 @@
 <script setup>
 import NavBar from "./components/layout/NavBar.vue";
-import MapComponent from "./components/Map/MapComponent.vue";
 </script>
 
 <template>
   <NavBar/>
-  <MapComponent/>
+  <router-view/>
 </template>
 
 <style>
